@@ -189,7 +189,6 @@ func newStatusCmd() *cobra.Command {
 				return nil
 			}
 
-			// Get expanded paths for checking
 			expandedPaths, err := cfgManager.GetExpandedDotfiles()
 			if err != nil {
 				return fmt.Errorf("failed to expand paths: %w", err)

@@ -115,7 +115,6 @@ func (m *Manager) AddDotfile(path string) error {
 	// Convert back to normalized form for storage
 	normalized := utils.NormalizePath(expanded)
 
-	// Check if already exists (comparing expanded paths)
 	for _, existing := range m.config.Dotfiles {
 		existingExpanded, _ := utils.ExpandPath(existing)
 		if existingExpanded == expanded {
@@ -133,7 +132,6 @@ func (m *Manager) RemoveDotfile(path string) error {
 		return fmt.Errorf("configuration not loaded")
 	}
 
-	// Expand the path for comparison
 	expanded, err := utils.ExpandPath(path)
 	if err != nil {
 		return fmt.Errorf("invalid path: %w", err)
@@ -159,7 +157,6 @@ func (m *Manager) RemoveDotfile(path string) error {
 	return m.Save()
 }
 
-// GetExpandedDotfiles returns the dotfiles list with expanded paths
 func (m *Manager) GetExpandedDotfiles() (map[string]string, error) {
 	if m.config == nil {
 		return nil, fmt.Errorf("configuration not loaded")
